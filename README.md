@@ -1,7 +1,7 @@
 # Afet Takip
 
 A mobile-friendly web app (Turkish UI) that shows recent earthquakes in Türkiye and worldwide on a list and a map.
-It is a single `index.html` file: no server required, it runs directly on GitHub Pages.
+It is a single `index.html` file: no server required, it runs directly on GitHub Pages. https://egegurkan.github.io/DisasterTracker/
 
 ## Features
 
