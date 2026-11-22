@@ -1,79 +1,69 @@
-# Afet Takip
+# MapSpy 🗺️
 
-A mobile-friendly web app (Turkish UI) that shows recent earthquakes in Türkiye and worldwide on a list and a map.
-It is a single `index.html` file: no server required, it runs directly on GitHub Pages. https://egegurkan.github.io/DisasterTracker/
+MapSpy is an **independent, experimental map and navigation interface** developed for learning, prototyping, and demonstration. It displays maps, routes, points of interest, and various traffic-related entries. It is not an official navigation, public safety, or traffic enforcement service.
 
-## Features
+> **Important:** Information shown in MapSpy may be approximate, outdated, unverified, or illustrative. Always follow traffic laws and official road signs. This project does not provide verified, real-time law-enforcement or road-safety information.
 
-- **Earthquakes**: Last 1 hour / 24 hours / 7 days / 30 days; Türkiye, world or all; magnitude and source filters.
-  Each row shows magnitude (color plus a text label such as "Küçük/Hafif/Orta"), time, depth, distance to your
-  selected location and the reporting source. Refresh button, plus pull-to-refresh on phones.
-- **Location**: Use the **Konum** (Location) button at the top to pick "Mevcut konumumu kullan" (use my current
-  location) or search for a city, district or address. Distances are calculated from the place you choose.
-- **Map**: Epicenters, an **estimated felt area** for each event (semi-transparent circle sized by magnitude),
-  your locations, and seismic stations. Refresh, go-to-my-location and layer buttons float on top of the map.
-- **Event detail**: Each agency's separate measurement, distance to your locations, estimated felt radius, link to the source.
-- **Emergency (Acil)**: Protective action (Drop, Cover, Hold On), **whistle** (continuous or SOS),
-  **"I'm safe" / "I'm in danger"** message drafts (SMS, WhatsApp, copy; you do the actual sending) and **call 112**.
-- **Reports**, **Seismic Network**, **Preparedness** (guide, family plan, emergency kit, ground and insurance info).
-- Light / dark / system theme, larger text, reduced motion, screen-reader labels.
+## 📌 About the Project
 
-## Publish on GitHub and open on your phone
+- **AI-assisted development:** The project was built as an experiment with assistance from Google Gemini. AI-generated output, like any other code, should be reviewed and tested before reuse.
+- **Data and source limitations:** The application includes entries embedded directly in its code and may access publicly available information or third-party services. The accuracy, provenance, current status, and reuse permissions of individual entries have not all been independently verified.
+- **Educational purpose:** This is a hobby and demonstration project, not a government or commercial service. Its educational nature does not remove obligations under applicable law or third-party terms.
+- **No official affiliation:** Names such as EGM or KGM, where displayed, identify categories or purported sources of information; their appearance does not prove an official data connection, approval, or endorsement.
 
-1. Create a new repository on GitHub (e.g. `afet-takip`) and upload **`index.html`** and **`README.md`** from this folder
-   ("Add file → Upload files").
-2. Go to **Settings → Pages** in the repository. Choose **Source: Deploy from a branch**, **Branch: `main`**,
-   folder **`/ (root)`**, then click **Save**.
-3. After a minute or two the site address appears: `https://<your-username>.github.io/afet-takip/`
-4. Open that address on your phone.
-   - **iPhone**: Safari → Share → **Add to Home Screen**.
-   - **Android**: Chrome → ⋮ → **Add to Home screen**.
+## 🛠️ How It Works
 
-Location only works on an `https://` address; GitHub Pages is already https. If you open the file directly on the
-phone (as a local file), location and some data may not work.
+- MapSpy is a browser-based interface distributed in `index.html` and `MapSpy.html`.
+- It uses **Leaflet.js** to display map layers, as well as third-party libraries and services for map tiles, routing, place searches, and other features.
+- Some map layers in the current implementation request images directly from Google-hosted tile endpoints. **Technical access does not establish permission to use those endpoints.** Their use should be reviewed against Google's applicable terms and replaced with an authorized integration where necessary.
+- Other external services may include OpenStreetMap-based tile and search providers, OSRM routing, and external map links. Each provider's terms, rate limits, attribution requirements, and privacy notices apply independently.
+- Loading external maps, search results, or routes requires an internet connection. Browser security restrictions may affect location access when the page is opened as a local file.
 
-## Data sources
+## 🗂️ Data Quality and Attribution
 
-Data is fetched directly by your browser; no server sits in between.
+- Radar, camera, speed-corridor, facility, and other map entries are **not guaranteed** to be complete, verified, current, or officially published.
+- Labels referring to public bodies, services, or community platforms must not be interpreted as proof that those bodies or platforms supplied or approved the data.
+- Public accessibility is not equivalent to an open license. Before republishing, exporting, distributing, or commercially reusing any dataset or map imagery, verify the source and applicable permissions.
+- Where required, keep the original provider's attribution and copyright notices visible.
 
-| Source | Used for | Note |
-|---|---|---|
-| [EMSC SeismicPortal](https://www.seismicportal.eu/) | Türkiye and surroundings, world | Also publishes Türkiye events reported by AFAD and Kandilli |
-| [USGS](https://earthquake.usgs.gov/earthquakes/feed/) | World | |
-| [GFZ GEOFON](https://geofon.gfz.de/) | Seismic stations | |
-| [OpenStreetMap](https://www.openstreetmap.org/copyright) | Map tiles and place search | © OpenStreetMap contributors |
+## ⚠️ Legal Notice and Disclaimer
 
-When several agencies report the same earthquake, they are merged into one event and each agency's measurement
-is shown side by side in the detail view. Place names in Türkiye are written relative to the nearest province
-center (e.g. "Malatya yakını", near Malatya).
+### 1. Informational and Experimental Use
 
-## Not included in this version
+MapSpy is an independent project created for educational and demonstration purposes. It is not an official traffic-monitoring, law-enforcement, emergency-response, or navigation authority.
 
-- **Notifications** (earthquake alerts on the lock screen), notification history, chat and "I felt it".
-  These need a server and are available in the server version of the project.
-- **AFAD's own service**: AFAD does not allow direct browser access, so it is not used here.
-  AFAD measurements arrive via EMSC; magnitudes may differ by a few tenths between agencies.
-- **Earthquake early warning**: there is no authorized early-warning feed for Türkiye with verified usage rights.
-- Offline cache: while the page is open, the whistle, your contacts, message drafts and the guide work without
-  internet; reopening the page offline requires the server version.
+### 2. Accuracy, Currency, and Reliability
 
-## Privacy
+Displayed information, including routes, speed corridors, camera and radar entries, points of interest, prices, and map layers, may be inaccurate, incomplete, approximate, illustrative, unavailable, or outdated. MapSpy does not claim to offer verified, comprehensive, or real-time official traffic enforcement data. Do not rely on it for safety-critical decisions.
 
-Your locations, emergency contacts, family plan and kit list are stored only on your phone (browser storage).
-Your current location is never sent anywhere; place search sends only the text you type to OpenStreetMap.
+### 3. Lawful and Safe Use
 
-## Important
+Users must obey applicable traffic laws, posted speed limits, road signs, and lawful instructions from authorities. The project does not encourage unsafe driving or evasion of lawful enforcement. Responsibility for developing, distributing, and using the project is determined by applicable law; this notice does not automatically transfer all legal responsibility to users.
 
-This app is not an official warning channel. Follow [AFAD](https://www.afad.gov.tr/) and governorates for official
-announcements. In an emergency, call **112**.
+### 4. Independence from Public Authorities
 
-## Rebuilding (for developers)
+MapSpy is not affiliated with, sponsored by, endorsed by, or officially approved by the Republic of Türkiye, the General Directorate of Security (EGM), the General Directorate of Highways (KGM), or any other government institution. References to such institutions are informational only.
 
-The source code lives in the main project. To regenerate the single file, run in the project root:
+### 5. Third-Party Content, Licenses, and Service Terms
 
-```
-npm install
-npm run build:github -w web
-```
+MapSpy may display or access third-party maps, datasets, software libraries, search and geocoding tools, routing services, or other content. Their use remains subject to the relevant copyright, trademark, attribution, license, API, access, and usage requirements. **Publicly accessible content is not necessarily free to copy, republish, or use without restrictions.** Access to an external map tile endpoint does not in itself establish authorization to use that service.
 
-Output: `github/index.html`.
+### 6. Location and Privacy
+
+Location-related features may request the user's permission through the browser. External map, geocoding, routing, weather, or other services may receive technical request information such as IP addresses, coordinates, routes, or search terms. Some settings or data may also be stored locally in the browser. Users should review relevant provider privacy policies and avoid submitting other people's personal information without an appropriate legal basis. Anyone publicly deploying or further developing this project should assess applicable privacy and data-protection obligations.
+
+### 7. Warranties and Liability
+
+The software is supplied **"AS IS"**, without warranties to the extent permitted by applicable law. Its educational purpose and any warranty or liability disclaimer do not eliminate non-waivable legal obligations or third-party rights. No statement here constitutes advance rejection of a legitimate copyright, privacy, trademark, data-protection, or other legal claim.
+
+### 8. Corrections and Rights Holder Requests
+
+If you find a factual error, missing attribution, problematic entry, or potential legal or privacy concern, please open an issue in this GitHub repository with relevant details so it can be reviewed.
+
+**This notice is informational and does not constitute legal advice.**
+
+## 📜 License
+
+The original code for this repository is made available under the **MIT License**, subject to the terms in the separate [`LICENSE`](LICENSE) file.
+
+This license applies only to material that the repository's contributors have the right to license. It does **not** grant permission to use third-party map imagery, geospatial datasets, names, trademarks, icons, APIs, or external services contrary to their respective licenses or terms. Embedded or externally loaded third-party components retain their own applicable notices and licensing requirements.
