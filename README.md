@@ -4,6 +4,8 @@ MapSpy is an **independent, experimental map and navigation interface** develope
 
 > **Important:** Information shown in MapSpy may be approximate, outdated, unverified, or illustrative. Always follow traffic laws and official road signs. This project does not provide verified, real-time law-enforcement or road-safety information.
 
+> https://egegurkan.github.io/DisasterTracker/
+
 ## 📌 About the Project
 
 - **AI-assisted development:** The project was built as an experiment with assistance from Google Gemini. AI-generated output, like any other code, should be reviewed and tested before reuse.
