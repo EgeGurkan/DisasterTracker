@@ -1,6 +1,6 @@
 # Afet Takip (Disaster Tracker) — Earthquake Tracking And Early Warning Platform (Pilot 0.1)
 
-**Live Demo:** <https://egegurkan.github.io/DisasterTracker/>
+**Live:** <https://egegurkan.github.io/DisasterTracker/>
 
 A Turkish earthquake platform for people living in Turkey who also want to track loved ones in other cities.
 Running on a single server and data infrastructure, both the **web/PWA** (Android Chrome, iPhone "Add to Home Screen", desktop) and the **iOS/Android app** (Expo / React Native) use the same matching rules.
