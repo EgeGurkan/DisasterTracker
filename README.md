@@ -1,71 +1,113 @@
-# MapSpy 🗺️
+# Afet Takip (Disaster Tracker) — Earthquake Tracking And Early Warning Platform (Pilot 0.1)
 
-MapSpy is an **independent, experimental map and navigation interface** developed for learning, prototyping, and demonstration. It displays maps, routes, points of interest, and various traffic-related entries. It is not an official navigation, public safety, or traffic enforcement service.
+**Live Demo:** <https://egegurkan.github.io/DisasterTracker/>
 
-> **Important:** Information shown in MapSpy may be approximate, outdated, unverified, or illustrative. Always follow traffic laws and official road signs. This project does not provide verified, real-time law-enforcement or road-safety information.
+A Turkish earthquake platform for people living in Turkey who also want to track loved ones in other cities.
+Running on a single server and data infrastructure, both the **web/PWA** (Android Chrome, iPhone "Add to Home Screen", desktop) and the **iOS/Android app** (Expo / React Native) use the same matching rules.
 
-> https://egegurkan.github.io/DisasterTracker/
+```
+shared/   Shared rules: data model, matching (nearby/saved/worldwide/early warning), merging, Turkish text
+server/   Node 24+ (TypeScript, no-build): source adapters, deduplication, persistent priority queue,
+          Web Push / FCM / APNs senders, receipts and timing metrics, HTTP API, ops dashboard
+web/      Preact + Vite PWA: Earthquakes · Map · Emergency · Alerts · Menu, Service Worker, offline Emergency
+mobile/   Expo (React Native) app: same API, FCM/APNs token, Emergency, My Locations, notification test
+docs/     Architecture, support matrix, KVKK (data protection), runbook, proposal, delivery report, and evidence
 
-## 📌 About the Project
+```
 
-- **AI-assisted development:** The project was built as an experiment with assistance from Google Gemini. AI-generated output, like any other code, should be reviewed and tested before reuse.
-- **Data and source limitations:** The application includes entries embedded directly in its code and may access publicly available information or third-party services. The accuracy, provenance, current status, and reuse permissions of individual entries have not all been independently verified.
-- **Educational purpose:** This is a hobby and demonstration project, not a government or commercial service. Its educational nature does not remove obligations under applicable law or third-party terms.
-- **No official affiliation:** Names such as EGM or KGM, where displayed, identify categories or purported sources of information; their appearance does not prove an official data connection, approval, or endorsement.
+## Quick Start
 
-## 🛠️ How It Works
+```
+npm install
 
-- MapSpy is a browser-based interface distributed in `index.html` and `MapSpy.html`.
-- It uses **Leaflet.js** to display map layers, as well as third-party libraries and services for map tiles, routing, place searches, and other features.
-- Some map layers in the current implementation request images directly from Google-hosted tile endpoints. **Technical access does not establish permission to use those endpoints.** Their use should be reviewed against Google's applicable terms and replaced with an authorized integration where necessary.
-- Other external services may include OpenStreetMap-based tile and search providers, OSRM routing, and external map links. Each provider's terms, rate limits, attribution requirements, and privacy notices apply independently.
-- Loading external maps, search results, or routes requires an internet connection. Browser security restrictions may affect location access when the page is opened as a local file.
+```
 
-## 🗂️ Data Quality and Attribution
+```
+npm run build
 
-- Radar, camera, speed-corridor, facility, and other map entries are **not guaranteed** to be complete, verified, current, or officially published.
-- Labels referring to public bodies, services, or community platforms must not be interpreted as proof that those bodies or platforms supplied or approved the data.
-- Public accessibility is not equivalent to an open license. Before republishing, exporting, distributing, or commercially reusing any dataset or map imagery, verify the source and applicable permissions.
-- Where required, keep the original provider's attribution and copyright notices visible.
+```
 
-## ⚠️ Legal Notice and Disclaimer
+```
+npm start
 
-### 1. Informational and Experimental Use
+```
 
-MapSpy is an independent project created for educational and demonstration purposes. It is not an official traffic-monitoring, law-enforcement, emergency-response, or navigation authority.
+The server starts at `http://localhost:8787`, polls AFAD (20s), EMSC, and USGS (60s) sources, and populates history for reports on initial startup. Data and keys are stored in the `data/` folder (`data/secrets.json` → VAPID keys, receipt secret, `adminToken`).
 
-### 2. Accuracy, Currency, and Reliability
+Environment variables (all optional): `AFET_PORT`, `AFET_DATA_DIR`, `AFET_PUBLIC_URL` (your https URL for Apple Web Push), `VAPID_SUBJECT`, `OPS_WEBHOOK_URL` (outage notifications), `FCM_SERVICE_ACCOUNT`, `APNS_KEY_PATH`/`APNS_KEY_ID`/`APNS_TEAM_ID`/`APNS_BUNDLE_ID`/`APNS_SANDBOX`/`APNS_CRITICAL`, `AFET_NO_POLL=1`.
 
-Displayed information, including routes, speed corridors, camera and radar entries, points of interest, prices, and map layers, may be inaccurate, incomplete, approximate, illustrative, unavailable, or outdated. MapSpy does not claim to offer verified, comprehensive, or real-time official traffic enforcement data. Do not rely on it for safety-critical decisions.
+### Tests And Evidence
 
-### 3. Lawful and Safe Use
+```
+npm test
 
-Users must obey applicable traffic laws, posted speed limits, road signs, and lawful instructions from authorities. The project does not encourage unsafe driving or evasion of lawful enforcement. Responsibility for developing, distributing, and using the project is determined by applicable law; this notice does not automatically transfer all legal responsibility to users.
+```
 
-### 4. Independence from Public Authorities
+```
+node server/scripts/e2e-webpush.ts
 
-MapSpy is not affiliated with, sponsored by, endorsed by, or officially approved by the Republic of Türkiye, the General Directorate of Security (EGM), the General Directorate of Highways (KGM), or any other government institution. References to such institutions are informational only.
+```
 
-### 5. Third-Party Content, Licenses, and Service Terms
+```
+npm run report
 
-MapSpy may display or access third-party maps, datasets, software libraries, search and geocoding tools, routing services, or other content. Their use remains subject to the relevant copyright, trademark, attribution, license, API, access, and usage requirements. **Publicly accessible content is not necessarily free to copy, republish, or use without restrictions.** Access to an external map tile endpoint does not in itself establish authorization to use that service.
+```
 
-### 6. Location and Privacy
+* `npm test`: server-side specification §10 acceptance scenarios (25 tests).
 
-Location-related features may request the user's permission through the browser. External map, geocoding, routing, weather, or other services may receive technical request information such as IP addresses, coordinates, routes, or search terms. Some settings or data may also be stored locally in the browser. Users should review relevant provider privacy policies and avoid submitting other people's personal information without an appropriate legal basis. Anyone publicly deploying or further developing this project should assess applicable privacy and data-protection obligations.
+* `e2e-webpush.ts`: real HTTP API + queue + VAPID signature + aes128gcm encryption; push service uses a local emulator. Output: `docs/kanit/e2e-webpush.json`.
 
-### 7. Warranties and Liability
+* `npm run report`: generates `docs/TESLIM_RAPORU.md` from actual dispatches in the database.
 
-The software is supplied **"AS IS"**, without warranties to the extent permitted by applicable law. Its educational purpose and any warranty or liability disclaimer do not eliminate non-waivable legal obligations or third-party rights. No statement here constitutes advance rejection of a legitimate copyright, privacy, trademark, data-protection, or other legal claim.
+## Real Phone Demo (I'm In Istanbul, My Family Is In Izmir)
 
-### 8. Corrections and Rights Holder Requests
+1. Start the server and tunnel (an https address accessible by phones):
 
-If you find a factual error, missing attribution, problematic entry, or potential legal or privacy concern, please open an issue in this GitHub repository with relevant details so it can be reviewed.
+   ```
+   npm run tunnel
+   
+   ```
 
-**This notice is informational and does not constitute legal advice.**
+   Pass the resulting `https://….trycloudflare.com` URL as `AFET_PUBLIC_URL` and restart the server.
 
-## 📜 License
+2. **iPhone (iOS 16.4+)**: open the URL in Safari → Share → **Add to Home Screen** → open from the home screen icon.
+   **Android**: open in Chrome (optionally select "Install app").
 
-The original code for this repository is made available under the **MIT License**, subject to the terms in the separate [`LICENSE`](LICENSE) file.
+3. Tap the **Location** button at the top of the **Earthquakes** screen → select "Use my current location" or search for a place (e.g., **Izmir**) and select it. Notifications for M 3.5+ earthquakes within 100 km of the selected location are enabled automatically. Keep worldwide M 6.5+ enabled. On iPhone, this works even without granting location permission.
 
-This license applies only to material that the repository's contributors have the right to license. It does **not** grant permission to use third-party map imagery, geospatial datasets, names, trademarks, icons, APIs, or external services contrary to their respective licenses or terms. Embedded or externally loaded third-party components retain their own applicable notices and licensing requirements.
+4. Go to **Menu → Settings → Notifications → Enable notifications**, then tap **Test my notifications** → "TEST · Notification test".
+
+5. **Team side** (not visible in the user interface): open `http://localhost:8787/#/ops` directly on a computer, enter the admin token, and mark the phone as a **TEST device** in the **Devices** table.
+
+6. Lock the phone; from the dashboard, send **TEST · Near Izmir M 4.2** and **TEST · Japan M 6.8**.
+
+7. On the lock screen: **"TEST · Earthquake recorded 19 km from Izmir"** and **"TEST · Worldwide earthquake"**. Tapping the notification opens the event, distances, source, and "Why did you receive this notification?" (rule + stage durations).
+
+8. Each row in the dashboard shows: which notification, which device, which rule, and how many seconds it took. Run `npm run report` for a permanent report.
+
+TEST events are sent only to devices marked as TEST devices by the team; regular users do not see this setting and never receive them.
+
+## GitHub Pages Version (Single File, Serverless)
+
+Live at: <https://egegurkan.github.io/DisasterTracker/>
+
+```
+npm run build:github -w web
+
+```
+
+Outputs `github/index.html` (+ `github/README.md`). Fetches data directly from EMSC, USGS, and GEOFON via the browser; notifications, chat, and AFAD's direct service are not included in this version (AFAD does not allow browser access). Deployment steps are in `github/README.md`.
+
+## Native App (iOS/Android)
+
+See `mobile/README.md`. Building requires your own accounts: a Firebase project (`google-services.json` + service account), an Apple Developer Program membership (APNs `.p8` key, signing), and separate entitlement from Apple for critical alerts.
+
+## Important Limitations
+
+* **Early warning**: There is no authorized feed with verified usage and distribution rights for Turkey. The app displays: "Earthquake early warning is not available at this location. You can use nearby earthquake notifications." The first measurement in the catalog (preliminary solution) is not used as an early warning. The pipeline works on drill devices with a signed TEST provider.
+
+* **MTA active faults, municipal soil layers, assembly areas**: Linked to official viewers until redistribution permissions are granted.
+
+* **Kandilli (KRDAE)**: Awaiting written permission; adapter is disabled.
+
+* On the web, the siren only plays while the app is open; when closed, the system notification sound is used (Web Push limitation).
