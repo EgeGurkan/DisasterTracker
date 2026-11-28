@@ -1,0 +1,21 @@
+{
+  "name": "Afet Takip — çoklu afet izleme, bildirimler ve acil araçlar",
+  "short_name": "Afet Takip",
+  "lang": "tr",
+  "dir": "ltr",
+  "start_url": "/#/afetler",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F4EF",
+  "theme_color": "#0A1324",
+  "categories": ["utilities", "news", "weather"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Acil", "short_name": "Acil", "url": "/#/acil", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

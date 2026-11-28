@@ -1,0 +1,20 @@
+{
+  "name": "afet-takip",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Türkçe deprem takip ve erken uyarı platformu — web/PWA, sunucu ve mobil",
+  "type": "module",
+  "workspaces": ["shared", "server", "web"],
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "build": "npm run build -w web",
+    "start": "node server/src/main.ts",
+    "dev:server": "node --watch server/src/main.ts",
+    "dev:web": "npm run dev -w web",
+    "test": "node --test --test-reporter=spec \"server/test/*.test.ts\"",
+    "typecheck": "tsc -p server && tsc -p web",
+    "scenario": "node server/scripts/scenario.ts",
+    "report": "node server/scripts/report.ts",
+    "tunnel": "cloudflared tunnel --url http://localhost:8787"
+  }
+}
