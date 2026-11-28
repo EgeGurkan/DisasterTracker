@@ -1,0 +1,71 @@
+{
+  "expo": {
+    "name": "Afet Takip",
+    "slug": "afet-takip",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "afettakip",
+    "ios": {
+      "bundleIdentifier": "tr.afettakip.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Bulunduğun yere yakın depremler için bildirim almak ve Tehlikedeyim mesajına konum eklemek için kullanılır. Kayıtlı konumlar ve dünya geneli bildirimleri izin olmadan da çalışır.",
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
+      },
+      "entitlements": {
+        "aps-environment": "production"
+      }
+    },
+    "android": {
+      "package": "tr.afettakip.app",
+      "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "POST_NOTIFICATIONS",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "VIBRATE"
+      ],
+      "blockedPermissions": [
+        "ACCESS_BACKGROUND_LOCATION"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#0A1324",
+          "sounds": [
+            "./assets/siren.wav"
+          ]
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Bulunduğun yere yakın depremler için kullanılır."
+        }
+      ],
+      "expo-audio",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 26
+          },
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ],
+      "expo-asset"
+    ],
+    "extra": {
+      "apiBase": "https://saints-printers-requirement-governing.trycloudflare.com"
+    }
+  }
+}

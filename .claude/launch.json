@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "afet-server",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["server/src/main.ts"],
+      "port": 8787
+    },
+    {
+      "name": "github-statik",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8790", "--directory", "."],
+      "port": 8790
+    }
+  ]
+}
