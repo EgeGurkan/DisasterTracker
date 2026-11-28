@@ -1,0 +1,160 @@
+{
+  "calistirma": "2026-11-27T21:46:22.347Z",
+  "not": "Push servisi yerel emülatördür. VAPID imzası doğrulandı ve her yük aboneye ait anahtarla çözüldü. Gerçek telefon kanıtı ayrı tutulur.",
+  "push_istekleri": [
+    {
+      "uc": "fcm.googleapis.com",
+      "ttl": "1799",
+      "urgency": "high",
+      "topic": "dGVzdC10MTc5NTgxNTk3OTIxNA",
+      "vapid_sub": "https://afet-takip.example",
+      "baslik": "TEST · Ailem · İzmir’e 19 km uzaklıkta deprem kaydedildi"
+    },
+    {
+      "uc": "web.push.apple.com",
+      "ttl": "1799",
+      "urgency": "high",
+      "topic": "dGVzdC10MTc5NTgxNTk3OTIxNA",
+      "vapid_sub": "https://afet-takip.example",
+      "baslik": "TEST · Ailem · İzmir’e 19 km uzaklıkta deprem kaydedildi"
+    },
+    {
+      "uc": "fcm.googleapis.com",
+      "ttl": "1799",
+      "urgency": "high",
+      "topic": "dGVzdC10MTc5NTgxNTk3OTYzMg",
+      "vapid_sub": "https://afet-takip.example",
+      "baslik": "TEST · Dünya genelinde deprem"
+    },
+    {
+      "uc": "web.push.apple.com",
+      "ttl": "1799",
+      "urgency": "high",
+      "topic": "dGVzdC10MTc5NTgxNTk3OTYzMg",
+      "vapid_sub": "https://afet-takip.example",
+      "baslik": "TEST · Dünya genelinde deprem"
+    },
+    {
+      "uc": "fcm.googleapis.com",
+      "ttl": "1799",
+      "urgency": "high",
+      "topic": "dGVzdC10MTc5NTgxNTk4MDQzOA",
+      "vapid_sub": "https://afet-takip.example",
+      "baslik": "TEST · Ailem · İzmir’e 28 km uzaklıkta deprem kaydedildi"
+    },
+    {
+      "uc": "web.push.apple.com",
+      "ttl": "1799",
+      "urgency": "high",
+      "topic": "dGVzdC10MTc5NTgxNTk4MDQzOA",
+      "vapid_sub": "https://afet-takip.example",
+      "baslik": "TEST · Ailem · İzmir’e 28 km uzaklıkta deprem kaydedildi"
+    },
+    {
+      "uc": "web.push.apple.com",
+      "ttl": "600",
+      "urgency": "normal",
+      "topic": "ZGxfeHozQlVzTm9wcko0",
+      "vapid_sub": "https://afet-takip.example",
+      "baslik": "TEST · Bildirim denemesi"
+    }
+  ],
+  "kilit_ekrani": [
+    {
+      "cihaz": "Android emülatörü (GPS açık, İstanbul)",
+      "gorunen": [
+        "TEST · Ailem · İzmir’e 19 km uzaklıkta deprem kaydedildi — M 4,2 (ML) · 00:46 · Menderes (İzmir) · Kaynak: TEST",
+        "TEST · Dünya genelinde deprem — Japonya · M 6,8 (Mw) · 00:46 · Kaynak: TEST",
+        "TEST · Ailem · İzmir’e 28 km uzaklıkta deprem kaydedildi — M 6,6 (Mw) · 00:46 · Ege Denizi (Karaburun açıkları) · Kaynak: TEST · Ayrıca: Dünya geneli"
+      ]
+    },
+    {
+      "cihaz": "iPhone emülatörü (GPS kapalı)",
+      "gorunen": [
+        "TEST · Ailem · İzmir’e 19 km uzaklıkta deprem kaydedildi — M 4,2 (ML) · 00:46 · Menderes (İzmir) · Kaynak: TEST",
+        "TEST · Dünya genelinde deprem — Japonya · M 6,8 (Mw) · 00:46 · Kaynak: TEST",
+        "TEST · Ailem · İzmir’e 28 km uzaklıkta deprem kaydedildi — M 6,6 (Mw) · 00:46 · Ege Denizi (Karaburun açıkları) · Kaynak: TEST · Ayrıca: Dünya geneli",
+        "TEST · Bildirim denemesi — Bu deneme sunucudan \"iPhone emülatörü (GPS kapalı)\" cihazına gönderildi. Gerçek bir deprem değildir."
+      ]
+    }
+  ],
+  "teslim": [
+    {
+      "bildirim": "TEST · Ailem · İzmir’e 19 km uzaklıkta deprem kaydedildi",
+      "cihaz": "Android emülatörü (GPS açık, İstanbul)",
+      "kural": "Ailem · İzmir 19/100 km ≥ M3.5",
+      "durum": "cihazda gösterildi",
+      "saglayici": 201,
+      "ilkGonderimMs": 10,
+      "kabulMs": 18,
+      "alimMs": 99,
+      "gosterimMs": 100
+    },
+    {
+      "bildirim": "TEST · Ailem · İzmir’e 19 km uzaklıkta deprem kaydedildi",
+      "cihaz": "iPhone emülatörü (GPS kapalı)",
+      "kural": "Ailem · İzmir 19/100 km ≥ M3.5",
+      "durum": "cihazda gösterildi",
+      "saglayici": 201,
+      "ilkGonderimMs": 14,
+      "kabulMs": 18,
+      "alimMs": 114,
+      "gosterimMs": 115
+    },
+    {
+      "bildirim": "TEST · Dünya genelinde deprem",
+      "cihaz": "Android emülatörü (GPS açık, İstanbul)",
+      "kural": "Dünya ≥ M6.5",
+      "durum": "cihazda gösterildi",
+      "saglayici": 201,
+      "ilkGonderimMs": 1,
+      "kabulMs": 3,
+      "alimMs": 54,
+      "gosterimMs": 55
+    },
+    {
+      "bildirim": "TEST · Dünya genelinde deprem",
+      "cihaz": "iPhone emülatörü (GPS kapalı)",
+      "kural": "Dünya ≥ M6.5",
+      "durum": "cihazda gösterildi",
+      "saglayici": 201,
+      "ilkGonderimMs": 2,
+      "kabulMs": 3,
+      "alimMs": 79,
+      "gosterimMs": 80
+    },
+    {
+      "bildirim": "TEST · Ailem · İzmir’e 28 km uzaklıkta deprem kaydedildi",
+      "cihaz": "Android emülatörü (GPS açık, İstanbul)",
+      "kural": "Ailem · İzmir 28/100 km ≥ M3.5 + Dünya ≥ M6.5",
+      "durum": "cihazda gösterildi",
+      "saglayici": 201,
+      "ilkGonderimMs": 1,
+      "kabulMs": 3,
+      "alimMs": 92,
+      "gosterimMs": 94
+    },
+    {
+      "bildirim": "TEST · Ailem · İzmir’e 28 km uzaklıkta deprem kaydedildi",
+      "cihaz": "iPhone emülatörü (GPS kapalı)",
+      "kural": "Ailem · İzmir 28/100 km ≥ M3.5 + Dünya ≥ M6.5",
+      "durum": "cihazda gösterildi",
+      "saglayici": 201,
+      "ilkGonderimMs": 2,
+      "kabulMs": 3,
+      "alimMs": 50,
+      "gosterimMs": 50
+    },
+    {
+      "bildirim": "TEST · Bildirim denemesi",
+      "cihaz": "iPhone emülatörü (GPS kapalı)",
+      "kural": "bildirim testi",
+      "durum": "cihazda gösterildi",
+      "saglayici": 201,
+      "ilkGonderimMs": 0,
+      "kabulMs": 2,
+      "alimMs": 75,
+      "gosterimMs": 75
+    }
+  ]
+}
